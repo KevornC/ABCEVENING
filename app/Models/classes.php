@@ -11,16 +11,12 @@ class classes extends Model
 
     protected $fillable = [
         'teacher_id',
-        'student_id',
         'course_id',
         'schedule',
     ];
 
     function teacher(){
         return $this->belongsTo(teachers::class);
-    }
-    function student(){
-        return $this->belongsTo(student::class);
     }
     function course(){
         return $this->belongsTo(course::class);

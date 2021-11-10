@@ -16,9 +16,12 @@ class teachers extends Model
     ];
 
     public function courses(){
-        return $this->hasMany(course::class);
+        return $this->hasMany(course::class,'teachers_id');
     }
     public function classes(){
-        return $this->hasMany(classes::class);
+        return $this->hasMany(classes::class,'id');
+    }
+    function assignedcourses(){
+        return $this->hasMany(assignedcourses::class,'teacher_id');
     }
 }

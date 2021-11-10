@@ -19,7 +19,7 @@ class student extends Model
     public function courses(){
         return $this->hasMany(course::class);
     }
-    public function classes(){
-        return $this->hasMany(classes::class);
+    function assignedcourses(){
+        return $this->hasMany(assignedcourses::class,'student_id');
     }
 }

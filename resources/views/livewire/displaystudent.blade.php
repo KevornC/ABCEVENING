@@ -67,28 +67,29 @@
 </div>
 @endif
 <div class="">
-    <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="add()">Add Course</a><br><br>
+    <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="add()">Add Student</a><br><br>
     {{-- <input type="text"  class="form-control" placeholder="Search" wire:model.fire="searchTerm" /> --}}
 <table clas="text-left">
     <thead>
         <tr>
-            <th class="p-10">Teacher</th>
-            <th>Course</th>
-            <th>Gender</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Exam Date</th>
-            <th>Action</th>
+            <th class="p-10">Student Name</th>
+            <th class="p-3">Gender</th>
+            <th class="p-3">Email</th>
+            <th class="p-3">Contact</th>
+            <th class="p-3">Course</th>
+            <th class="p-3">Teacher</th>
+            <th class="p-3">Action</th>
         </tr>
     </thead>
     <tbody> 
-        @forelse ( $courses as $data )
+        @forelse ( $assignedcourses as $data )
         <tr class="">
+            <td class="p-3">{{$data->student->name}}</td>
+            <td class="p-3">{{$data->student->gender}}</td>  
+            <td class="p-3">{{$data->student->email}}</td>
+            <td class="p-3">{{$data->student->contact}}</td>
             <td class="p-3">{{$data->teacher->name}}</td>
-            <td class="p-3">{{$data->course_nm}}</td>
-            <td class="p-3">{{$data->course_start}}</td>  
-            <td class="p-3">{{$data->course_ends}}</td>
-            <td class="p-3">{{$data->exam_year}}</td>
+            <td class="p-3">{{$data->course->course_nm}}</td>
             <td><a class="hover:bg-cool-gray-600 hover:text-yellow-400" wire:click.prevent="editmode({{$data->id}})" href="">Edit</a></td>
  
         </tr>

@@ -52,11 +52,11 @@
                 <i class="mr-3 fas fa-align-left"></i>
                 Forms
             </a> --}}
-            <a href="tabs.html" class="flex items-center py-4 pl-6 text-white opacity-75 hover:opacity-100 nav-item">
+            <a href="{{route('students')}}" class="flex items-center py-4 pl-6 text-white opacity-75 hover:opacity-100 nav-item">
                 <i class="mr-3 fas fa-tablet-alt"></i>
                 Students
             </a>
-            <a href="calendar.html" class="flex items-center py-4 pl-6 text-white opacity-75 hover:opacity-100 nav-item">
+            <a href="{{route('schedule')}}" class="flex items-center py-4 pl-6 text-white opacity-75 hover:opacity-100 nav-item">
                 <i class="mr-3 fas fa-calendar"></i>
                 Class Schedule
             </a>

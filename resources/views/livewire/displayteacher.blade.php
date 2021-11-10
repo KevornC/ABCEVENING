@@ -68,7 +68,7 @@
 @endif
 <div class="">
     <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="add()">Add Teacher</a><br><br>
-    <input type="text"  class="form-control" placeholder="Search" wire:model.fire="searchTerm" />
+    {{-- <input type="text"  class="form-control" placeholder="Search" wire:model.fire="searchTerm" /> --}}
 <table clas="text-left">
     <thead>
         <tr>

@@ -11,18 +11,23 @@ class course extends Model
 
     protected $fillable = [
         'course_nm',
+        'teachers_id',
         'course_start',
         'course_ends',
         'exam_year'
     ];
 
-    function teacher(){
-        return $this->belongsTo(teachers::class);
+    public function teacher(){
+        return $this->belongsTo(teachers::class,'teachers_id');
     }
-    function student(){
-        return $this>belongsTo(student::Class);
+    public function student(){
+        return $this>belongsTo(student::class,'id');
     }
     public function classes(){
-        return $this->hasMany(classes::class);
+        return $this->hasMany(classes::class,'id');
+    }
+
+    function assignedcourses(){
+        return $this->hasMany(assignedcourses::class,'course_id');
     }
 }

@@ -110,6 +110,7 @@ public function update(){
         User::create([
             'name'=>$registration['name'],
             'email'=>$registration['email'],
+            'gender'=>$registration['gender'],
             'password'=>$registration['password'],
             'status'=>'1'
         ]);

@@ -73,22 +73,17 @@
     <thead>
         <tr>
             <th class="p-10">Teacher</th>
-            <th>Course</th>
-            <th>Gender</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Exam Date</th>
-            <th>Action</th>
+            <th class="p-3">Course</th>
+            <th class="p-3">Schedule</th>
+            <th class="p-3">Action</th>
         </tr>
     </thead>
     <tbody> 
-        @forelse ( $courses as $data )
+        @forelse ( $classes as $data )
         <tr class="">
             <td class="p-3">{{$data->teacher->name}}</td>
-            <td class="p-3">{{$data->course_nm}}</td>
-            <td class="p-3">{{$data->course_start}}</td>  
-            <td class="p-3">{{$data->course_ends}}</td>
-            <td class="p-3">{{$data->exam_year}}</td>
+            <td class="p-3">{{$data->course->course_nm}}</td>
+            <td class="p-3">{{$data->schedule}}</td>
             <td><a class="hover:bg-cool-gray-600 hover:text-yellow-400" wire:click.prevent="editmode({{$data->id}})" href="">Edit</a></td>
  
         </tr>

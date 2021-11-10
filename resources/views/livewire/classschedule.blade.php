@@ -1,5 +1,5 @@
 <div>
-    {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
+    {{-- Nothing in the world is as soft and yielding as water. --}}
     <div>
         @if ($editmode===true)
         <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" wire:submit.prevent="update" autocomplete="off">
@@ -39,84 +39,41 @@
             </div>
             @endif
             <div class="flex flex-wrap">
-                <label for="coursename" class="block mt-8 mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                    {{ __('Course Name') }}:
-                </label>
-
-                <input id="coursename" type="text" class="form-input w-full @error('coursename')  border-red-500 @enderror"
-                wire:model="coursename" autofocus>
-
-                @error('coursename')
-                <p class="mt-4 text-xs italic text-red-500">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
-
-            <div class="flex flex-wrap">
-                <label for="title" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                    {{ __('Teacher') }}:
+                <label for="course" class="block mt-8 mb-2 text-sm font-bold text-gray-700 sm:mb-4">
+                    {{ __('Course') }}:
                 </label>
 
                 {{-- <input id="title" type="text" class="form-input w-full @error('title')  border-red-500 @enderror"
                 wire:model="title" autofocus> --}}
-                <select class="form-input w-full @error('teacher')  border-red-500 @enderror" wire:model="teacher"> 
-                    {{-- <option value="">Select a Teacher</option> --}}
-                    @forelse ($teachers as $item)
-                    @if ($item->id==$teacher)
-                    <option selected value={{$teacher}}>Old value:{{$item->name}}</option>
+                <select class="form-input w-full @error('course')  border-red-500 @enderror" wire:model="course"> 
+                    {{-- <option value="">Select a Course</option> --}}
+                    @forelse ($courses as $item)
+                    @if($item->course_id==$studentcourse)
+                    <option selected value={{$item->studentcourse}}>{{$item->course_nm}}</option>
                     @endif
-                    <option value={{$item->id}}>{{$item->name}}</option>
-                    @empty
-                    <option>****Not Availalble****</option>
+                        <option value={{$item->id}}>{{$item->course_nm}}</option>
+                        @empty
+                        <option>****Not Availalble****</option>
                     @endforelse
                 </select>
-                @error('teacher')
+                @error('course')
                 <p class="mt-4 text-xs italic text-red-500">
                     {{ $message }}
                 </p>
                 @enderror
             </div>
-            
+
             <div class="flex flex-wrap">
-                <label for="startdate" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                    {{ __('Start Date') }}:
+                <label for="dateandtime" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
+                    {{ __('Class Date and Time') }}:
                 </label>
 
-                <input id="startdate" type="date" class="form-input w-full @error('startdate')  border-red-500 @enderror"
-                wire:model="startdate" autofocus>
-
-                @error('startdate')
-                <p class="mt-4 text-xs italic text-red-500">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
             
-            <div class="flex flex-wrap">
-                <label for="enddate" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                    {{ __('End Date') }}:
-                </label>
-
-                <input id="enddate" type="date" class="form-input w-full @error('enddate')  border-red-500 @enderror"
-                wire:model="enddate" autofocus>
-
-                @error('enddate')
-                <p class="mt-4 text-xs italic text-red-500">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
-            
-            <div class="flex flex-wrap">
-                <label for="examdate" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                    {{ __('Exam Date') }}:
-                </label>
-
-                <input id="exandate" type="date" class="form-input w-full @error('examdate')  border-red-500 @enderror"
-                wire:model="examdate" autofocus>
-
-                @error('examdate')
+                <input type="datetime-local" id="class-time" class="form-input w-full @error('dateandtime')  border-red-500 @enderror"
+                wire:model="dateandtime"
+                min="2021-10-11T00:00" >
+                
+                @error('dateandtime')
                 <p class="mt-4 text-xs italic text-red-500">
                     {{ $message }}
                 </p>
@@ -179,87 +136,46 @@
                             </div>
                         </div>
                         @endif
-                        <div class="flex flex-wrap">
-                            <label for="coursename" class="block mt-8 mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                                {{ __('Course Name') }}:
-                            </label>
-            
-                            <input id="coursename" type="text" class="form-input w-full @error('coursename')  border-red-500 @enderror"
-                            wire:model="coursename" autofocus>
-            
-                            @error('coursename')
-                            <p class="mt-4 text-xs italic text-red-500">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
             
                         <div class="flex flex-wrap">
-                            <label for="title" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                                {{ __('Teacher') }}:
+                            <label for="course" class="block mt-8 mb-2 text-sm font-bold text-gray-700 sm:mb-4">
+                                {{ __('Course') }}:
                             </label>
             
                             {{-- <input id="title" type="text" class="form-input w-full @error('title')  border-red-500 @enderror"
                             wire:model="title" autofocus> --}}
-                            <select class="form-input w-full @error('teacher')  border-red-500 @enderror" wire:model="teacher"> 
-                                <option value="">Select a Teacher</option>
-                                @forelse ($teachers as $item)
-                                    <option value={{$item->id}}>{{$item->name}}</option>
+                            <select class="form-input w-full @error('course')  border-red-500 @enderror" wire:model="course"> 
+                                <option value="">Select a Course</option>
+                                @forelse ($courses as $item)
+                                    <option value={{$item->id}}>{{$item->course_nm}}</option>
                                     @empty
                                     <option>****Not Availalble****</option>
                                 @endforelse
                             </select>
-                            @error('teacher')
+                            @error('course')
                             <p class="mt-4 text-xs italic text-red-500">
                                 {{ $message }}
                             </p>
                             @enderror
                         </div>
-                        
+
                         <div class="flex flex-wrap">
-                            <label for="startdate" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                                {{ __('start Date') }}:
+                            <label for="dateandtime" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
+                                {{ __('Class Date and Time') }}:
                             </label>
             
-                            <input id="startdate" type="date" class="form-input w-full @error('startdate')  border-red-500 @enderror"
-                            wire:model="startdate" autofocus>
-            
-                            @error('startdate')
+                        
+                            <input type="datetime-local" id="class-time" class="form-input w-full @error('dateandtime')  border-red-500 @enderror"
+                            wire:model="dateandtime"
+                            min="2021-10-11T00:00" >
+                            
+                            @error('dateandtime')
                             <p class="mt-4 text-xs italic text-red-500">
                                 {{ $message }}
                             </p>
                             @enderror
                         </div>
-                        
-                        <div class="flex flex-wrap">
-                            <label for="enddate" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                                {{ __('End Date') }}:
-                            </label>
-            
-                            <input id="enddate" type="date" class="form-input w-full @error('enddate')  border-red-500 @enderror"
-                            wire:model="enddate" autofocus>
-            
-                            @error('enddate')
-                            <p class="mt-4 text-xs italic text-red-500">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>
-                        
-                        <div class="flex flex-wrap">
-                            <label for="examdate" class="block mb-2 text-sm font-bold text-gray-700 sm:mb-4">
-                                {{ __('Exam Date') }}:
-                            </label>
-            
-                            <input id="exandate" type="date" class="form-input w-full @error('examdate')  border-red-500 @enderror"
-                            wire:model="examdate" autofocus>
-            
-                            @error('examdate')
-                            <p class="mt-4 text-xs italic text-red-500">
-                                {{ $message }}
-                            </p>
-                            @enderror
-                        </div>                        
+                                                
                         <div class="flex flex-wrap justify-center w-full align-items-center">
                             <button type="submit"
                             class="inline-flex items-center justify-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 disabled:opacity-50">
@@ -278,10 +194,17 @@
             </div>
     
                     @elseif($addmode===false)
-                    @include('livewire.displaycourse')
+                    @include('livewire.displayschedule')
                     @endif
                     {{-- @endif
                     @endif --}}
     
     </div>
-</div>
+{{-- </div>
+<input type="time" id="appt" name="appt"
+       min="09:00" max="18:00" required>
+
+
+       <input type="datetime-local" id="class-time"
+       name="class-time" value="2018-06-12T19:30"
+       min="2021-10-11T00:00" > --}}
