@@ -9,8 +9,9 @@
                 <header class="px-6 py-5 font-semibold text-gray-700 bg-gray-200 sm:py-6 sm:px-8 sm:rounded-t-md">
                     {{ __('Login') }}
                 </header>
-
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
+                <livewire:login />
+               @livewireScripts
+                {{-- <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="flex flex-wrap">
@@ -75,7 +76,7 @@
                         </p>
                         @endif
                     </div>
-                </form>
+                </form> --}}
 
             </section>
         </div>

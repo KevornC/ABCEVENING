@@ -67,7 +67,7 @@
 </div>
 @endif
 <div class="">
-    <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="add()">Add Course</a><br><br>
+    <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="add()">Add Schedule</a><br><br>
     {{-- <input type="text"  class="form-control" placeholder="Search" wire:model.fire="searchTerm" /> --}}
 <table clas="text-left">
     <thead>
@@ -83,7 +83,7 @@
         <tr class="">
             <td class="p-3">{{$data->teacher->name}}</td>
             <td class="p-3">{{$data->course->course_nm}}</td>
-            <td class="p-3">{{$data->schedule}}</td>
+            <td class="p-3">{{date('F d, Y h:i:s A',strtotime($data->schedule))}}</td>
             <td><a class="hover:bg-cool-gray-600 hover:text-yellow-400" wire:click.prevent="editmode({{$data->id}})" href="">Edit</a></td>
  
         </tr>

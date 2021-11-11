@@ -15,7 +15,7 @@
 </head>
 <body class="h-screen font-sans antialiased leading-none bg-gray-100">
 <div class="flex flex-col">
-    @if(Route::has('login'))
+ @if(Route::has('login'))
         <div class="absolute top-0 right-0 mt-4 mr-4 space-x-4 sm:mt-6 sm:mr-6 sm:space-x-6">
             @auth
                 <a href="{{ url('/home') }}" class="text-sm font-normal text-teal-800 no-underline uppercase hover:underline">{{ __('Home') }}</a>

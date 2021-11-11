@@ -1,6 +1,9 @@
 <div>
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <div>
+        <?php
+        date_default_timezone_set("jamaica");
+        ?>
         @if ($editmode===true)
         <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" wire:submit.prevent="update" autocomplete="off">
             {{-- @csrf --}}
@@ -46,11 +49,11 @@
                 {{-- <input id="title" type="text" class="form-input w-full @error('title')  border-red-500 @enderror"
                 wire:model="title" autofocus> --}}
                 <select class="form-input w-full @error('course')  border-red-500 @enderror" wire:model="course"> 
-                    {{-- <option value="">Select a Course</option> --}}
+                    {{-- <option value="$course">Select a Course</option> --}}
                     @forelse ($courses as $item)
-                    @if($item->course_id==$studentcourse)
-                    <option selected value={{$item->studentcourse}}>{{$item->course_nm}}</option>
-                    @endif
+                        @if($item->id==$course)
+                            <option selected value="{{$course}}">Old Value:{{$item->course_nm}}</option>
+                        @endif
                         <option value={{$item->id}}>{{$item->course_nm}}</option>
                         @empty
                         <option>****Not Availalble****</option>
@@ -68,7 +71,8 @@
                     {{ __('Class Date and Time') }}:
                 </label>
 
-            
+                <input type="text" readonly class="form-input w-full @error('dateandtime')  border-red-500 @enderror" value="{{$dateandtime}}">
+                
                 <input type="datetime-local" id="class-time" class="form-input w-full @error('dateandtime')  border-red-500 @enderror"
                 wire:model="dateandtime"
                 min="2021-10-11T00:00" >
@@ -98,7 +102,7 @@
         </form>
 
         @elseif ($addmode===true)
-        <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="view()">View Courses</a>
+        <a class="hover:bg-cool-gray-600 hover:text-yellow-400" href="" wire:click.prevent="view()">View Schedule</a>
             <div>
                     <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" wire:submit.prevent="Onsubmit" autocomplete="off">
                         {{-- @csrf --}}

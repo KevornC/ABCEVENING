@@ -107,15 +107,16 @@ public function update(){
     $registration['password_confirmation']=$this->password_confirmation;
     if($registration['password']==$registration['password_confirmation']){
     $registration['password']=Hash::make($registration['password']);
-        User::create([
+        $id=User::create([
             'name'=>$registration['name'],
             'email'=>$registration['email'],
             'gender'=>$registration['gender'],
             'password'=>$registration['password'],
             'status'=>'1'
-        ]);
+        ])->id;
 
         teachers::create([
+            'user_id'=>$id,
             'name'=>$registration['name'],
             'email'=>$registration['email'],
             'gender'=>$registration['gender'],

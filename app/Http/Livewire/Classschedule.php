@@ -56,22 +56,26 @@ public function edit(){
 }
 
 public function editmode($id){
+    date_default_timezone_set("jamaica");
     $this->editmode=true;
-    $teacher=classes::find($id);
+    $teacher=classes::with('course')->find($id);
     $this->editid=$id;
-    $this->studentcourse=$teacher->course_id;
+    $this->course=$teacher->course_id;
+    // dd($this->course);
     $this->dateandtime=$teacher->schedule;
 }
 
 public function update(){
+    date_default_timezone_set("jamaica");
     $teacher=classes::find($this->editid);
+    // dd($this->course);
     $teacher->course_id=$this->course;
     $teacher->schedule=$this->dateandtime;
     $teacher->Save();
 
     $this->successMsg="Successfully Updated";
     $this->editmode=false;
-    $this->resetForm();
+    // $this->resetForm();
     sleep(1);
 }
 
@@ -82,7 +86,7 @@ public function update(){
     }
 
     function Onsubmit(){
-
+    
     $registration=$this->validate();
     $registration['course']=$this->course;
     $registration['dateandtime']=$this->dateandtime;
@@ -112,6 +116,7 @@ public function update(){
     }
     public function render()
     {
+        date_default_timezone_set("jamaica");
         return view('livewire.classschedule',[
             'classes'		=>	classes::with('teacher','course')->get(),
             'courses' =>course::with('teacher')->get(),

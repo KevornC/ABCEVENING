@@ -86,9 +86,9 @@
         <tr class="">
             <td class="p-3">{{$data->teacher->name}}</td>
             <td class="p-3">{{$data->course_nm}}</td>
-            <td class="p-3">{{$data->course_start}}</td>  
-            <td class="p-3">{{$data->course_ends}}</td>
-            <td class="p-3">{{$data->exam_year}}</td>
+            <td class="p-3">{{date('F d, Y',strtotime($data->course_start))}}</td>  
+            <td class="p-3">{{date('F d, Y',strtotime($data->course_ends))}}</td>
+            <td class="p-3">{{date('Y',strtotime($data->exam_year))}}</td>
             <td><a class="hover:bg-cool-gray-600 hover:text-yellow-400" wire:click.prevent="editmode({{$data->id}})" href="">Edit</a></td>
  
         </tr>
